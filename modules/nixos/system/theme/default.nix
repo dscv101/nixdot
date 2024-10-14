@@ -1,6 +1,6 @@
 { lib, ... }:
 with lib; {
-  options.olistrik.system.theme = {
+  options.dots.system.theme = {
     theme = mkOption {
       type = types.attrs;
       default = import ./ayu-mirage.nix;

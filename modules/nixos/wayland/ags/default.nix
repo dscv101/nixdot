@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.ags;
+  cfg = config.dots.wayland.ags;
 in
 {
-  options.olistrik.wayland.ags = {
+  options.dots.wayland.ags = {
     enable = mkOpt types.bool false "Whether to enable AGS widgets.";
     package = mkOpt types.package pkgs.ags "Which AGS package to use.";
   };

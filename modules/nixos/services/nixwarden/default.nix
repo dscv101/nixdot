@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.olistrik.services.nixwarden;
+  cfg = config.dots.services.nixwarden;
 in
 {
-  options.olistrik.services.nixwarden = {
+  options.dots.services.nixwarden = {
     package = mkOption {
       type = types.package;
       default = pkgs.bws;

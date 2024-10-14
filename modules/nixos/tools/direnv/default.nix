@@ -1,17 +1,17 @@
 { lib, config, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.tools.direnv;
+  cfg = config.dots.tools.direnv;
 in
 {
-  options.olistrik.tools.direnv = {
+  options.dots.tools.direnv = {
     enable = mkEnableOption "direnv";
     # TODO: lib this for all shells, etc.
     shellHooks = mkSub "config for shell hooks" {
       zsh = mkSub "config for zsh" {
         enable = mkEnableOption "zsh hook" // {
-          default = config.olistrik.programs.zsh.enable;
+          default = config.dots.programs.zsh.enable;
         };
       };
     };
@@ -20,7 +20,7 @@ in
   config = mkIf cfg.enable {
     programs.direnv.enable = true;
 
-    olistrik.programs.zsh = mkIf cfg.shellHooks.zsh.enable {
+    dots.programs.zsh = mkIf cfg.shellHooks.zsh.enable {
       extraConfig = ''eval "$(${config.programs.direnv.package}/bin/direnv hook zsh)"'';
     };
   };

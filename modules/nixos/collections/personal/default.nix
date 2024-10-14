@@ -2,12 +2,12 @@
 # not needed on servers etc.
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.collections.personal;
+  cfg = config.dots.collections.personal;
 in
 {
-  options.olistrik.collections.personal = with types; {
+  options.dots.collections.personal = with types; {
     enable = mkEnableOption "personal configuration";
   };
 

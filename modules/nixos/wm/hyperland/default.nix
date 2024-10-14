@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wm.hyperland;
+  cfg = config.dots.wm.hyperland;
 in
 {
-  options.olistrik.wm.hyperland = {
+  options.dots.wm.hyperland = {
     enable = mkEnableOption "hyprland";
   };
 
@@ -14,7 +14,7 @@ in
       enable = true;
     };
 
-    olistrik.programs = {
+    dots.programs = {
       waybar = enabled;
       # way-displays = enabled;
     };
@@ -32,7 +32,7 @@ in
       settings = rec {
         initial_session = {
           command = "${config.programs.hyprland.package}/bin/Hyprland";
-          user = "oli";
+          user = "dscv";
         };
         default_session = initial_session;
       };

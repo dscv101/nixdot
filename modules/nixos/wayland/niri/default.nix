@@ -1,18 +1,18 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.niri;
+  cfg = config.dots.wayland.niri;
 in
 {
-  options.olistrik.wayland.niri = {
+  options.dots.wayland.niri = {
     enable = mkEnableOption "niri";
     package = mkOpt types.package pkgs.niri "Which Niri package to use.";
   };
 
 
   config = mkIf cfg.enable {
-    olistrik.wayland = {
+    dots.wayland = {
       way-displays.enable = true;
       xwayland-satellite.enable = true;
       swayidle.enable = true;
@@ -82,7 +82,7 @@ in
       settings = rec {
         initial_session = {
           command = "${cfg.package}/bin/niri-session";
-          user = "oli";
+          user = "dscv";
         };
         default_session = initial_session;
       };

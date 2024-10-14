@@ -1,10 +1,10 @@
 { pkgs, lib, inputs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 {
   networking.hostName = mkForce "nixos-installer";
 
-  olistrik = {
+  dots = {
     user = enabled;
     # collections = {
     #   server = enabled;

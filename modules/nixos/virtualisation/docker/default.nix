@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.virtualisation.docker;
+  cfg = config.dots.virtualisation.docker;
 in
 {
-  options.olistrik.virtualisation.docker = with types; {
+  options.dots.virtualisation.docker = with types; {
     enable = mkEnableOption "docker";
     rootless = mkEnableOption "rootless mode";
     buildx = mkEnableOption "buildx support";
@@ -22,6 +22,6 @@ in
       };
     };
 
-    olistrik.user.extraGroups = mkIf (! cfg.rootless) [ "docker" ];
+    dots.user.extraGroups = mkIf (! cfg.rootless) [ "docker" ];
   };
 }

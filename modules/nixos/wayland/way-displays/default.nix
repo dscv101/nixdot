@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.way-displays;
+  cfg = config.dots.wayland.way-displays;
 in
 {
-  options.olistrik.wayland.way-displays = with types; {
+  options.dots.wayland.way-displays = with types; {
     enable = mkEnableOption "way-displays service";
     package = mkOpt package pkgs.way-displays "Which way-displays package to use.";
     logLevel = mkOpt (enum [ "debug" "info" "warning" "error" ]) "debug" "The log level for way-displays";

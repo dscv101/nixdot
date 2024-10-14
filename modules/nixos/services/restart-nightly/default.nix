@@ -4,12 +4,12 @@
 , ...
 }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.services.restart-nightly;
+  cfg = config.dots.services.restart-nightly;
 in
 {
-  options.olistrik.services.restart-nightly = {
+  options.dots.services.restart-nightly = {
     enable = mkEnableOption "restart-nightly service";
   };
 

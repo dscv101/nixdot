@@ -1,12 +1,12 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.swayidle;
+  cfg = config.dots.wayland.swayidle;
 in
 {
   # TODO: configure here, not in $HOME.
-  options.olistrik.wayland.swayidle = with types; {
+  options.dots.wayland.swayidle = with types; {
     enable = mkEnableOption "swayidle service";
     package = mkOpt package pkgs.swayidle "Which package to use.";
   };

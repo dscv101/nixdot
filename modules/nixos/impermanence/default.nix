@@ -1,12 +1,12 @@
 { lib, config, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.impermanence;
+  cfg = config.dots.impermanence;
 in
 {
 
-  options.olistrik.impermanence = with types; {
+  options.dots.impermanence = with types; {
     enable = mkOpt bool false "Whether to enable system impermanence.";
     persistentPath = mkOpt str "/persist" "The location to store persisted files.";
     zfs = mkSub "configuration options for zfs impermanence" {

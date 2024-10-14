@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.xwayland-satellite;
+  cfg = config.dots.wayland.xwayland-satellite;
 in
 {
-  options.olistrik.wayland.xwayland-satellite = with types; {
+  options.dots.wayland.xwayland-satellite = with types; {
     enable = mkEnableOption "xwayland-satellite service";
     package = mkOpt package pkgs.xwayland-satellite "Which package to use.";
     display = mkOpt str ":0" "Display to use for XWayland";

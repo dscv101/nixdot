@@ -1,14 +1,14 @@
 { lib, config, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.locale;
+  cfg = config.dots.locale;
 in
 {
-  options.olistrik.locale = with types; {
-    timeZone = mkOpt str "Europe/Amsterdam" "The system timezone.";
-    defaultLocale = mkOpt str "en_GB.UTF-8" "The default language/locale.";
-    formatLocale = mkOpt str "nl_NL.UTF-8" "The locale for time, number, address, etc formats.";
+  options.dots.locale = with types; {
+    timeZone = mkOpt str "America/Chicago" "The system timezone.";
+    defaultLocale = mkOpt str "en_US.UTF-8" "The default language/locale.";
+    formatLocale = mkOpt str "en_US.UTF-8" "The locale for time, number, address, etc formats.";
   };
 
   config = {

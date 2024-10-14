@@ -1,15 +1,15 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.collections.common;
+  cfg = config.dots.collections.common;
 in
 {
-  options.olistrik.collections.common = {
+  options.dots.collections.common = {
     enable = mkEnableOption "common configuration" // { default = true; };
   };
   config = mkIf cfg.enable {
-    olistrik = {
+    dots = {
       user = enabled;
       programs = {
         neovim = enabled;
@@ -43,7 +43,7 @@ in
     # TODO: extract to own module with nixwarden secrets.
     services.tailscale.enable = true;
 
-    environment.systemPackages = with pkgs; with olistrik; [
+    environment.systemPackages = with pkgs; with dots; [
       # Fetchers
       git
       wget

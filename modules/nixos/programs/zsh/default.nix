@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.programs.zsh;
+  cfg = config.dots.programs.zsh;
 in
 {
-  options.olistrik.programs.zsh = with types; {
+  options.dots.programs.zsh = with types; {
     enable = mkEnableOption "zsh";
     extraConfig = mkOpt lines "" "Extra configuration to be added to zshrc";
   };

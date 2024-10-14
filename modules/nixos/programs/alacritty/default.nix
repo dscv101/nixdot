@@ -2,11 +2,11 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.olistrik.programs.alacritty;
+  cfg = config.dots.programs.alacritty;
   tomlFormat = pkgs.formats.toml { };
 in
 {
-  options.olistrik.programs.alacritty = {
+  options.dots.programs.alacritty = {
     enable = mkEnableOption "alacritty";
     settings = mkOption {
       type = tomlFormat.type;

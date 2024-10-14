@@ -4,12 +4,14 @@
   inputs = {
     ##########################
     # nix package sets
+    # global, so they can be `.follow`ed
+    systems.url = "github:nix-systems/default-linux";
 
-    # Normal nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-
-    # Unstable nixpkgs
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # We build against NixOS unstable, because stable takes way too long to get things into
+    # more versions with or without pinned branches can be added if deemed necessary
+    # stable? Never heard of her.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # moves faster, has less packages
 
     ##########################
     # flake and system support
@@ -41,29 +43,6 @@
       inputs.nixpkgs.follows = "unstable";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    steam-fetcher = {
-      url = "github:nix-community/steam-fetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    valheim-server = {
-      url = "github:aidalgol/valheim-server-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        steam-fetcher.follows = "steam-fetcher";
-      };
-    };
-
-    nix-matlab = {
-      url = "gitlab:doronbehar/nix-matlab";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:
@@ -74,10 +53,10 @@
         src = ./.;
 
         snowfall = {
-          namespace = "olistrik";
+          namespace = "dots";
           meta = {
-            name = "olistrik";
-            title = "Flake stuff by Oli 😊";
+            name = "dots";
+            title = "Flake Dots";
           };
         };
       };
@@ -87,46 +66,36 @@
         allowUnfree = true;
       };
 
-      nixvimModules = lib.snowfall.module.create-modules {
-        src = ./modules/nixvim;
-      };
-
       overlays = with inputs; [
-        valheim-server.overlays.default
-        steam-fetcher.overlays.default
-        nixvim.overlays.default
+
         niri-flake.overlays.niri
-        nix-matlab.overlay # why.
+
       ];
 
       systems.modules.nixos = with inputs; [
         disko.nixosModules.default
         impermanence.nixosModules.impermanence
 
-        valheim-server.nixosModules.default
-
-        # Temporary.
-        "${unstable}/nixos/modules/services/web-apps/immich.nix"
 
         # until I work out where to put this.
-        ({ ... }: {
-          nix.registry.nixpkgs.flake = nixpkgs;
-          nix.registry.unstable.flake = unstable;
-          nix.registry.olistrik.flake = self;
-          nix.registry.templates.flake = self;
+       # ({ ... }: {
+          # nix.registry.nixpkgs.flake = nixpkgs;
+          # nix.registry.unstable.flake = unstable;
+          # nix.registry.olistrik.flake = self;
+          # nix.registry.templates.flake = self;
 
-          nix.settings = {
-            auto-optimise-store = true;
-            substituters = [
-              "https://cache.olii.nl"
-              "https://cache.nixos.org"
-            ];
-            trusted-public-keys = [
-              "cache.olii.nl:/eobpj1e29xJJ4r2ixYFR4E0t0zNDqu2g9/3ryaRa60="
-              "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-            ];
-          };
-        })
+          # nix.settings = {
+          #   auto-optimise-store = true;
+          #  substituters = [
+          #    "https://cache.olii.nl"
+          #    "https://cache.nixos.org"
+          #  ];
+           # trusted-public-keys = [
+          #    "cache.olii.nl:/eobpj1e29xJJ4r2ixYFR4E0t0zNDqu2g9/3ryaRa60="
+          #    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          #  ];
+         # };
+       # })
       ];
     };
 }

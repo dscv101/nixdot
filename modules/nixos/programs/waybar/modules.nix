@@ -93,50 +93,6 @@
 
   };
 
-  battery = {
-    name = "battery";
-    config = ''
-      "battery": {
-          "states": {
-              // "good": 95,
-              "warning": 30,
-              "critical": 15
-          },
-          "format": "{icon} {capacity}%",
-          "format-charging": "󰂄 {capacity}%",
-          "format-plugged": "  {capacity}%",
-          "format-alt": "{time} {icon}",
-          // "format-good": "", // An empty format will hide the module
-          "format-full": "",
-          "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂"]
-      },
-    '';
-    style = ''
-      #battery {
-      }
-
-      #battery.charging, #battery.plugged {
-      }
-
-      @keyframes blink {
-          to {
-              background-color: white;
-              color: black;
-          }
-      }
-
-      #battery.critical:not(.charging) {
-          background-color: #f53c3c;
-          color: #ffffff;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-    '';
-  };
-
   network = {
     name = "network";
     config = ''
@@ -206,8 +162,8 @@
     config = ''
       "custom/gitlab-issues": {
         "return-type": "json",
-        "exec": "${pkgs.olistrik.waybar-gitlab}/bin/waybar-gitlab issues",
-        "on-click": "${pkgs.olistrik.waybar-gitlab}/bin/waybar-gitlab issues open"
+        "exec": "${pkgs.dots.waybar-gitlab}/bin/waybar-gitlab issues",
+        "on-click": "${pkgs.dots.waybar-gitlab}/bin/waybar-gitlab issues open"
       },
     '';
   };
@@ -216,8 +172,8 @@
     config = ''
       "custom/gitlab-merge-requests": {
         "return-type": "json",
-        "exec": "${pkgs.olistrik.waybar-gitlab}/bin/waybar-gitlab merge-requests",
-        "on-click": "${pkgs.olistrik.waybar-gitlab}/bin/waybar-gitlab merge-requests open"
+        "exec": "${pkgs.dots.waybar-gitlab}/bin/waybar-gitlab merge-requests",
+        "on-click": "${pkgs.dots.waybar-gitlab}/bin/waybar-gitlab merge-requests open"
       },
     '';
   };

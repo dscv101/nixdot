@@ -1,8 +1,8 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.programs.waybar;
+  cfg = config.dots.programs.waybar;
 
   concatStrAttrs = sep: name: list:
     builtins.concatStringsSep sep (builtins.catAttrs name list);
@@ -23,7 +23,6 @@ let
     gitlab-merge-requests
     pulseaudio
     network
-    battery
     clock
   ];
 
@@ -40,7 +39,7 @@ let
 
 in
 {
-  options.olistrik.programs.waybar = {
+  options.dots.programs.waybar = {
     enable = mkEnableOption "waybar";
   };
 

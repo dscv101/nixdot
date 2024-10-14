@@ -1,12 +1,12 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.wayland.wbg;
+  cfg = config.dots.wayland.wbg;
 in
 {
   # TODO: configure here, not in $HOME.
-  options.olistrik.wayland.wbg = with types; {
+  options.dots.wayland.wbg = with types; {
     enable = mkEnableOption "wbg service";
     package = mkOpt package pkgs.wbg "Which package to use.";
     wallpaperPath = mkOpt str "$HOME/.wallpaper" "Path to the wallpaper.";

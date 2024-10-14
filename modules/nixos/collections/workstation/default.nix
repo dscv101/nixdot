@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 let
-  cfg = config.olistrik.collections.workstation;
+  cfg = config.dots.collections.workstation;
 in
 {
-  options.olistrik.collections.workstation = {
+  options.dots.collections.workstation = {
     enable = mkEnableOption "common workstation configuration";
   };
 
@@ -27,10 +27,10 @@ in
     ];
 
     # configure alacritty
-    olistrik.programs.alacritty = {
+    dots.programs.alacritty = {
       enable = true;
       settings = {
-        colors = config.olistrik.system.theme.theme // {
+        colors = config.dots.system.theme.theme // {
           draw_bold_text_with_bright_colors = true;
         };
         font = {

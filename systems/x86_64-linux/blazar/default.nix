@@ -1,9 +1,9 @@
 # Thoth is my personal laptop as it is used primarily for university work and
 # provisioning my other nixos hosts.
 
-{ lib, pkgs, ... }:
+{ lib, ... }:
 with lib;
-with lib.olistrik;
+with lib.dots;
 {
   imports = [
     ./hardware-configuration.nix
@@ -12,7 +12,7 @@ with lib.olistrik;
   ];
 
   # Shared configurations.
-  olistrik = {
+  dots = {
     collections = {
       personal = enabled;
       workstation = enabled;
@@ -32,10 +32,10 @@ with lib.olistrik;
   networking.hostId = "8177229e";
 
   # Impermanence. Get rekt python.
-  olistrik.impermanence.enable = true;
+  dots.impermanence.enable = true;
   users.mutableUsers = false;
-  olistrik.user.hashedPasswordFile = "/persist/secret/user.password";
-  olistrik.impermanence.zfs.snapshots = [ "zroot/local/root@blank" ];
+  dots.user.hashedPasswordFile = "/persist/secret/user.password";
+  dots.impermanence.zfs.snapshots = [ "zroot/local/root@blank" ];
   # When I'm ready for home impermanence, I'll add "zroot/local/home@blank"
 
   # Bootloader.
@@ -51,7 +51,7 @@ with lib.olistrik;
     };
   };
   networking.networkmanager.enable = true;
-  olistrik.user.extraGroups = [ "networkmanager" ];
+  dots.user.extraGroups = [ "networkmanager" ];
 
   # Enable laptop powersaving features
   services.thermald.enable = true;
@@ -103,12 +103,12 @@ with lib.olistrik;
   };
 
   # matlab is a piece of sh*t
-  environment.systemPackages = with pkgs; [
-    matlab
-  ];
+ # environment.systemPackages = with pkgs; [
+   # matlab
+ # ];
 
   # NEVER CHANGE.
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
 
 # Legacy from nixogen:
